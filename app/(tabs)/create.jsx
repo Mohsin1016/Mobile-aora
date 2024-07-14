@@ -35,6 +35,8 @@ const Create = () => {
           : ["video/mp4", "video/gif"],
     });
 
+    console.log(result, "result");
+
     if (!result.canceled) {
       if (selectType === "image") {
         setForm({
@@ -68,15 +70,18 @@ const Create = () => {
 
     setUploading(true);
     try {
+      console.log("video is being creating");
       await createVideoPost({
         ...form,
         userId: user.$id,
       });
+      console.log("video oooooooooo");
 
       Alert.alert("Success", "Post uploaded successfully");
       router.push("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
+      console.log(error.message);
     } finally {
       setForm({
         title: "",
